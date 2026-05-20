@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TREND BOARD 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#F7F4EF;color:#111}
+.hd{background:#111;color:#F7F4EF;padding:12px 14px;display:flex;align-items:center;justify-content:space-between}
+.hd-logo{font-size:18px;font-weight:700;letter-spacing:2px}
+.hd-sub{font-size:10px;color:#aaa;text-align:right}
+.tabs{display:flex;background:#fff;border-bottom:1px solid #e0ddd8;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:10px 14px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid transparent;color:#999;white-space:nowrap;flex-shrink:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tab.on{color:#111;border-bottom-color:#111}
+.tab.cl.on{color:#B85C6E;border-bottom-color:#B85C6E}
+.tab.fu.on{color:#4A6FA5;border-bottom-color:#4A6FA5}
+.pills{display:flex;gap:6px;padding:8px 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;background:#F7F4EF}
+.pills::-webkit-scrollbar{display:none}
+.pill{padding:4px 12px;border-radius:14px;border:1px solid #ccc;font-size:11px;cursor:pointer;white-space:nowrap;flex-shrink:0;background:#fff;-webkit-tap-highlight-color:transparent}
+.pill.on{background:#111;color:#fff;border-color:#111}
+.bh{display:flex;align-items:center;justify-content:space-between;padding:8px 12px 4px}
+.bh-title{font-size:14px;font-weight:600}
+.bh-count{font-size:11px;color:#999}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 10px 40px}
+.card{border-radius:10px;overflow:hidden;background:#fff;border:1px solid #e8e4de;cursor:pointer;-webkit-tap-highlight-color:transparent;position:relative}
+.vis{width:100%;padding-bottom:133%;position:relative}
+.vis-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 8px;text-align:center}
+.vi-icon{font-size:28px;margin-bottom:6px;line-height:1}
+.vi-t{font-size:12px;font-weight:600;line-height:1.25;margin-bottom:3px}
+.vi-s{font-size:9px;opacity:.7;letter-spacing:1px;text-transform:uppercase}
+.cbody{padding:8px 10px 10px}
+.csrc{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.ctitle{font-size:12px;font-weight:600;line-height:1.25;color:#111;margin-bottom:3px}
+.cdesc{font-size:10px;color:#888;line-height:1.45}
+.lbtn{position:absolute;top:6px;right:6px;background:rgba(255,255,255,.9);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;border:1px solid #ddd;-webkit-tap-highlight-color:transparent}
+.mwrap{margin:10px 10px 0;border-radius:10px;overflow:hidden;border:1px solid #e8e4de;background:#fff}
+.mvis{width:100%;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;text-align:center}
+.mbody{padding:12px 14px 16px}
+.msrc{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.mtitle{font-size:16px;font-weight:700;color:#111;margin-bottom:6px}
+.mdesc{font-size:13px;color:#666;line-height:1.6}
+.mclose{display:block;text-align:center;padding:10px;font-size:12px;color:#999;border-top:1px solid #e8e4de;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-logo">TREND.BOARD</div>
+  <div class="hd-sub">CLUEL / FUGUE / 2026</div>
+</div>
+
+<div class="tabs" id="tabs">
+  <div class="tab on" data-tab="all">ALL</div>
+  <div class="tab" data-tab="ss26">SS26</div>
+  <div class="tab" data-tab="aw26">AW26</div>
+  <div class="tab cl" data-tab="cluel">CLUEL</div>
+  <div class="tab fu" data-tab="fugue">FUGUE</div>
+</div>
+
+<div class="pills" id="pills">
+  <div class="pill on" data-cat="all">ALL</div>
+  <div class="pill" data-cat="color">COLOR</div>
+  <div class="pill" data-cat="silhouette">SILHOUETTE</div>
+  <div class="pill" data-cat="texture">TEXTURE</div>
+  <div class="pill" data-cat="accessory">ACCESSORY</div>
+</div>
+
+<div class="bh">
+  <div class="bh-title" id="heading">2026 TREND BOARD</div>
+  <div class="bh-count" id="cnt"></div>
+</div>
+
+<div class="grid" id="grid"></div>
+<div id="modal"></div>
+
+<script>
+var D = {
+ss26:[
+{icon:'*',t:'LACE & BOW',s:'Romantic',d:'Jonathan Anderson(Dior)が先導。パニエウエスト、サテンのバラ、レースネックライン。ホワイトレース+デニムジャケットでカジュアルダウンが旬。',c:'silhouette',bg:'#8b5a72',fg:'#f5e0ea',src:'SS26',sc:'#B85C6E'},
+{icon:'*',t:'BOLD PRIMARY',s:'Color',d:'Loeweデビューで原色が爆発。ビビッドブルー・レッド・イエローが競演。一色を主役にシンプルにまとめるのがポイント。',c:'color',bg:'#4a6fa5',fg:'#ddeaf8',src:'SS26',sc:'#4A6FA5'},
+{icon:'*',t:'EVOLVED DENIM',s:'Material',d:'ランウェイ露出+200%。Casablanca・Givenchy・Diorが再定義。総デニムコーデが今年の狙い目。',c:'texture',bg:'#2c3e6b',fg:'#c5d4f0',src:'SS26',sc:'#4A6FA5'},
+{icon:'*',t:'BRALETTE x OVERSIZE',s:'Silhouette',d:'極端な比率のコントラストが共存。ブラレット+ワイドパンツでバランスを取るのが今年流。',c:'silhouette',bg:'#7a5c3a',fg:'#f5e8d5',src:'SS26',sc:'#C8A97E'},
+{icon:'*',t:'TRENCH REINVENTED',s:'Outer',d:'Celineのビビッドライナーで定番が一着のルックに昇格。ベルトゆるめでこなれ感を。',c:'silhouette',bg:'#5a4a30',fg:'#ede0cc',src:'SS26',sc:'#C8A97E'},
+{icon:'*',t:'EVOLVED GREY',s:'Color',d:'チュールやシルクで素材感を纏いレッドカーペット級に。ワントーングレーで上品さを演出。',c:'color',bg:'#4a4a4a',fg:'#e8e8e8',src:'SS26',sc:'#888'}
+],
+aw26:[
+{icon:'*',t:'VICTORIAN DRAMA',s:'Romantic',d:'Chloe・Valentino・Simone Rochaが牽引。ラッフル・ベルベット・オーバーサイズカラーが核心。レースブラウス+テーラードパンツで現代的に。',c:'silhouette',bg:'#4a0f2e',fg:'#f5c0d5',src:'AW26',sc:'#B85C6E'},
+{icon:'*',t:'SLIM FIT RETURNS',s:'Silhouette',d:'Michael Rider(Celine)スキニーフレアが話題沸騰。ハイウエストスキニー+丈長アウターでスタイルアップ。',c:'silhouette',bg:'#2c2c2c',fg:'#d5d5d5',src:'AW26',sc:'#888'},
+{icon:'*',t:'FUR IS BACK',s:'Texture',d:'Gucci・Chanel・Schiaparelli全員参加。ファーベストをニットに重ねるだけで即トレンド顔。',c:'texture',bg:'#6b4c08',fg:'#f8e8c0',src:'AW26',sc:'#C8A97E'},
+{icon:'*',t:'PLAID & TARTAN',s:'Print',d:'ChloéがFW26全体でチェックを展開。小物だけチェックにしてもトレンド感が出る。',c:'texture',bg:'#1a3618',fg:'#b8d5b0',src:'AW26',sc:'#3B6D11'},
+{icon:'*',t:'EQUESTRIAN',s:'Theme',d:'2026年は午年。Stella McCartneyが乗馬場でショー開催。乗馬ブーツ+ベルテッドジャケットで。',c:'silhouette',bg:'#4a3a0a',fg:'#f0e0a0',src:'AW26',sc:'#BA7517'},
+{icon:'*',t:'HEIRLOOM QUALITY',s:'Craft',d:'Dior・Valentino・Conner Ivesでブロカード・ビーズ刺繍が競演。スペシャルな一着を主役に。',c:'texture',bg:'#3d2e4a',fg:'#d5c8f0',src:'AW26',sc:'#7F77DD'},
+{icon:'*',t:'STATEMENT BROOCH',s:'Accessory',d:'フローラルアップリケ&ロゼットリボン。シンプルなコートの胸元に一つ付けるだけで完成。',c:'accessory',bg:'#8b6914',fg:'#f5e8c0',src:'AW26',sc:'#C8A97E'},
+{icon:'*',t:'THIGH HIGH BOOTS',s:'Accessory',d:'極端に高いタイハイブーツがランウェイを席巻。ミニスカートと合わせてレッグラインを強調。',c:'accessory',bg:'#1a1a2e',fg:'#c0c8f0',src:'AW26',sc:'#4A6FA5'}
+],
+cluel:[
+{icon:'*',t:'AMEKAJI BIKE GIRL',s:'Vol.117 June 2026',d:'オブラダ2026SSコレクション。バイクとアメカジを融合。デニムジャケット+ワイドパンツにスカーフを巻いてこなれ感を。',c:'all',bg:'#7a2e3e',fg:'#f5d0d8',src:'CLUEL',sc:'#B85C6E'},
+{icon:'*',t:'SKIRTS & DRESSES',s:'CLUEL Summer 2026',d:'GIRLS meets SKIRT&DRESS。花柄マキシスカートにタンクトップを合わせてシンプルに。',c:'silhouette',bg:'#9a3a52',fg:'#f8d0da',src:'CLUEL',sc:'#B85C6E'},
+{icon:'*',t:'BOYISH FLORALS',s:'CLUEL Summer 2026',d:'WEAR FLOWERS EVERY DAY。オーバーサイズの花柄シャツをパンツにインするのがCLUEL流。',c:'color',bg:'#8b3050',fg:'#f5c8d5',src:'CLUEL',sc:'#B85C6E'},
+{icon:'*',t:'J&M DAVIDSON BAG',s:'CLUEL June 2026',d:'Everyday!! J&M DAVIDSON。レザーミニバッグを斜めがけでこなれたスタイルに。',c:'accessory',bg:'#6b2a3a',fg:'#f0c0d0',src:'CLUEL',sc:'#B85C6E'},
+{icon:'*',t:'GENDERLESS STYLE',s:'CLUEL Genderless',d:'ファクトタムによるジェンダーレスなスタンダード服。ボーイズパンツ+ロングシャツでNYスタイルを。',c:'silhouette',bg:'#3e2030',fg:'#e8c0d0',src:'CLUEL',sc:'#B85C6E'},
+{icon:'*',t:'2026 TREND HUNT',s:'CLUEL Spring 2026',d:'TREND 2026 HUNTING! for GOOD GIRL。明るいカラーを一色だけ取り入れて春らしさを演出。',c:'color',bg:'#8b4a30',fg:'#f8e0d0',src:'CLUEL',sc:'#B85C6E'}
+],
+fugue:[
+{icon:'*',t:'MINIMAL & EDGE',s:'FUGUE Editorial',d:'トレンドに左右されないエッジーなスタイル提案。オールブラックに一点だけ異素材を混ぜてニュアンスを出して。',c:'silhouette',bg:'#1a3060',fg:'#c0d0f0',src:'FUGUE',sc:'#4A6FA5'},
+{icon:'*',t:'SUSTAINABLE STYLE',s:'FUGUE 2026',d:'ヴィンテージ感とコンテンポラリーの融合。古着x新品ミックスで自分だけのスタイルを。',c:'texture',bg:'#1a3d2e',fg:'#b0d8c0',src:'FUGUE',sc:'#3B6D11'},
+{icon:'*',t:'MODE x STREET',s:'FUGUE Culture',d:'スーツジャケットxダメージデニムで緊張と緩和のバランスを。ハイとローの共存がFUGUE流。',c:'silhouette',bg:'#2c3e6b',fg:'#c5d4f0',src:'FUGUE',sc:'#4A6FA5'},
+{icon:'*',t:'FASHION AS ART',s:'FUGUE Art Issue',d:'ファッションをアートとして捉えるFUGUEの視点。グラフィックプリントを主役にあとはミニマルに。',c:'color',bg:'#3d1e5a',fg:'#d5c0f0',src:'FUGUE',sc:'#7F77DD'}
+]
+};
+
+var ALL = D.ss26.concat(D.aw26, D.cluel, D.fugue);
+var tab = 'all', cat = 'all', liked = {}, cards = [], openIdx = -1;
+var HEADS = {all:'2026 TREND BOARD',ss26:'SS26 SPRING/SUMMER',aw26:'AW26 AUTUMN/WINTER',cluel:'CLUEL',fugue:'FUGUE'};
+
+function getCards() {
+  var pool = tab === 'all' ? ALL : (D[tab] || []);
+  if (cat === 'all') return pool;
+  return pool.filter(function(x) { return x.c === cat || x.c === 'all'; });
+}
+
+function render() {
+  cards = getCards();
+  document.getElementById('heading').textContent = HEADS[tab] || '';
+  document.getElementById('cnt').textContent = cards.length + ' items';
+  document.getElementById('modal').innerHTML = '';
+  openIdx = -1;
+
+  var h = '';
+  for (var i = 0; i < cards.length; i++) {
+    var x = cards[i];
+    var lk = liked[tab + ':' + i] ? '\u2665' : '\u2661';
+    h += '<div class="card" data-i="' + i + '">';
+    h += '<div class="lbtn" data-li="' + i + '">' + lk + '</div>';
+    h += '<div class="vis"><div class="vis-inner" style="background:' + x.bg + '">';
+    h += '<div class="vi-t" style="color:' + x.fg + ';font-size:13px;font-weight:700">' + x.t + '</div>';
+    h += '<div class="vi-s" style="color:' + x.fg + '">' + x.s + '</div>';
+    h += '</div></div>';
+    h += '<div class="cbody">';
+    h += '<div class="csrc" style="color:' + x.sc + '">' + x.src + '</div>';
+    h += '<div class="ctitle">' + x.t + '</div>';
+    h += '<div class="cdesc">' + x.d + '</div>';
+    h += '</div></div>';
+  }
+  document.getElementById('grid').innerHTML = h;
+}
+
+document.getElementById('grid').addEventListener('click', function(e) {
+  var li = e.target.getAttribute('data-li');
+  if (li !== null) {
+    var i = parseInt(li);
+    var k = tab + ':' + i;
+    liked[k] = !liked[k];
+    e.target.textContent = liked[k] ? '\u2665' : '\u2661';
+    e.stopPropagation();
+    return;
+  }
+  var card = e.target.closest('.card');
+  if (!card) return;
+  var i = parseInt(card.getAttribute('data-i'));
+  if (i === openIdx) {
+    document.getElementById('modal').innerHTML = '';
+    openIdx = -1;
+    return;
+  }
+  openIdx = i;
+  var x = cards[i];
+  var h = '<div class="mwrap">';
+  h += '<div class="mvis" style="background:' + x.bg + '">';
+  h += '<div class="mtitle" style="color:' + x.fg + '">' + x.t + '</div>';
+  h += '<div class="vi-s" style="color:' + x.fg + '">' + x.s + '</div>';
+  h += '</div>';
+  h += '<div class="mbody">';
+  h += '<div class="msrc" style="color:' + x.sc + '">' + x.src + ' / ' + x.s + '</div>';
+  h += '<div class="mtitle">' + x.t + '</div>';
+  h += '<div class="mdesc">' + x.d + '</div>';
+  h += '</div>';
+  h += '<div class="mclose" id="mclose">閉じる</div>';
+  h += '</div>';
+  document.getElementById('modal').innerHTML = h;
+  document.getElementById('mclose').onclick = function() {
+    document.getElementById('modal').innerHTML = '';
+    openIdx = -1;
+  };
+  card.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+
+document.getElementById('tabs').addEventListener('click', function(e) {
+  var t = e.target.getAttribute('data-tab');
+  if (!t) return;
+  document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('on'); });
+  e.target.classList.add('on');
+  tab = t; cat = 'all';
+  document.querySelectorAll('.pill').forEach(function(el, i) { el.classList.toggle('on', i === 0); });
+  document.getElementById('pills').style.display = (t === 'cluel' || t === 'fugue') ? 'none' : 'flex';
+  render();
+});
+
+document.getElementById('pills').addEventListener('click', function(e) {
+  var c = e.target.getAttribute('data-cat');
+  if (!c) return;
+  document.querySelectorAll('.pill').forEach(function(el) { el.classList.remove('on'); });
+  e.target.classList.add('on');
+  cat = c;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
